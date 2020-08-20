@@ -1,0 +1,63 @@
+/*carrito*/
+.table-cart{
+  background: #fff;
+  border-radius: 1em;
+  margin-bottom:1%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 1em;
+
+}
+.table-cart2{
+  background: rgb(245, 215, 133);
+  border-radius: 1em;
+  margin-bottom:10%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 1em;
+
+}
+
+.table-cart img{
+  width: 30%;
+}
+
+.table-cart td{
+font-size: 1vw;
+}
+
+.titulos{
+  font-size: 5vw;
+  text-align: center;
+}
+
+.subtitulos{
+  font-size: 2vw;
+  text-align: center;
+}
+
+.credit-card{
+  background: rgb(133, 133, 133);
+  border-radius: 0.5em;
+  margin-bottom:1%;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding: 2em;
+  
+}
+
+.credit-card p{
+  color: rgb(127, 171, 221);
+  text-align: center;
+  font-size: 2vw;
+}
+
+.factura{
+  background: rgb(221, 221, 221);
+  border-radius: 1em;
+  margin-bottom:1%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 1em;
+}
+

@@ -1,0 +1,132 @@
+create database hotel
+
+use hotel
+
+create table administrador(
+id int primary key auto_increment,
+email varchar(120) unique,
+password varchar(200)
+);
+
+create table moneda(
+id int primary key auto_increment,
+nombre varchar (150),
+cambio float
+)
+;
+create table tipo_pago(
+id int primary key auto_increment,
+nombre varchar (150),
+comision float
+)
+;
+create table pais(
+id int primary key auto_increment,
+nombre varchar (150)
+)
+;
+create table usuario(
+id int primary key auto_increment,
+password varchar(200),
+nombre varchar (120),
+ci int,
+telefono int,
+email varchar (120) unique,
+pais int,
+foreign key (pais) references pais(id) 
+)
+;
+create table pedido(
+id int primary key auto_increment,
+usuario int,
+moneda int,
+tipo_pago int,
+total float,
+
+foreign key (usuario) references usuario(id),
+foreign key (moneda) references moneda (id),
+foreign key (tipo_pago) references  tipo_pago (id)
+)
+;
+
+create table factura(
+nro int primary key auto_increment,
+pedido int,
+nombre varchar (150),
+nit int,
+direccion varchar (150),
+codigo_postal int,
+costo float,
+iva float,
+total float,
+estado int,
+
+foreign key (pedido) references pedido(id)
+)
+;
+
+create table tipo_habitacion(
+id int primary key auto_increment,
+nombre varchar (150)
+)
+;
+create table habitacion (
+Nro_habitacion int primary key auto_increment,
+Tipo int, 
+precio float,
+capacidad int,
+dormitorios int,
+baños int,
+dimension int,
+descripcion varchar (150),
+foreign key (tipo) references tipo_habitacion (id)
+)
+;
+
+create table servicio(
+id int primary key auto_increment,
+nombre varchar(150),
+precio float,
+cap_maxima int,
+descripcion varchar(150)
+)
+;
+
+create table evento(
+nro_salon int primary key auto_increment,
+nombre varchar(150),
+precio float,
+descripcion varchar (150)
+)
+;
+
+create table hab_fecha(
+id int primary key auto_increment,
+nro_hab int,
+nro_pedido int,
+fecha date,
+
+foreign key (nro_hab) references habitacion (nro_habitacion),
+foreign key (nro_pedido) references pedido(id)
+)
+;
+
+create table serv_fecha(
+id int primary key auto_increment,
+nro_serv int,
+nro_pedido int,
+cantidad int,
+fecha date,
+
+foreign key (nro_serv) references servicio (id),
+foreign key (nro_pedido) references pedido(id)
+);
+
+create table evento_fecha (
+id int primary key auto_increment,
+nro_evento int,
+nro_pedido int,
+fecha date,
+foreign key (nro_evento) references evento (nro_salon),
+foreign key (nro_pedido) references pedido(id)
+)
