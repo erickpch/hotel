@@ -3,12 +3,12 @@
 @section('titulo','Reservas')
 
 @section('contenido')
-    <img src="../res.jpg" width="100%" height="5%" alt="">
+    <img src="{{asset('/res.jpg')}}" width="100%" height="5%" alt="">
     
     <br><br>
     <center>
-    <a href="/menu/reservas/habitaciones"><img src="/reservas/hab.jpg" width="40%" height="10%" alt=""></a>
-    <a href="/menu/reservas/salones"><img src="/reservas/salones.jpg" width="40%" height="10%" alt=""></a>
+    <a href="{{asset('/menu/reservas/habitaciones')}}"><img src="/reservas/hab.jpg" width="40%" height="10%" alt=""></a>
+    <a href="{{asset('/menu/reservas/salones')}}"><img src="/reservas/salones.jpg" width="40%" height="10%" alt=""></a>
      </center>
 
      
