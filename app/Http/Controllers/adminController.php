@@ -27,7 +27,7 @@ class adminController extends Controller
 
     public function show_gestion(){
 
-        $hab= Habitacion::join('Tipo_habitacion','tipo_habitacion.id','habitacion.tipo')->select('tipo_habitacion.nombre','habitacion.nro_habitacion','habitacion.precio','habitacion.link_imagen','habitacion.nro_habitacion')->get();
+        $hab= Habitacion::join('tipo_habitacion','tipo_habitacion.id','habitacion.tipo')->select('tipo_habitacion.nombre','habitacion.nro_habitacion','habitacion.precio','habitacion.link_imagen','habitacion.nro_habitacion')->get();
         $serv= Servicio::get();
         $evento= Evento::get();
 
@@ -37,7 +37,7 @@ class adminController extends Controller
     }
 //----------------------------habitaciones----------------
     public function verificar_hab (Request $request){
-        $hab= Habitacion::join('Tipo_habitacion','habitacion.tipo','tipo_habitacion.id')->where('habitacion.nro_habitacion',$request->id)->get();
+        $hab= Habitacion::join('tipo_habitacion','habitacion.tipo','tipo_habitacion.id')->where('habitacion.nro_habitacion',$request->id)->get();
         $producto=$hab[0];
 
         return view('gestion_hab',compact('producto'));
@@ -153,17 +153,17 @@ class adminController extends Controller
         $pedidos= Pedido::where('created_at',$request->fecha)->count();
         $ganancias= Pedido::where('created_at',$request->fecha)->get()->sum('total');
 
-        $hab_ocupadas= Hab_fecha::join('Pedido','pedido.id','hab_fecha.nro_pedido')->join('Usuario','usuario.id','pedido.usuario')->where('fecha',$request->fecha)->get();
+        $hab_ocupadas= Hab_fecha::join('pedido','pedido.id','hab_fecha.nro_pedido')->join('usuario','usuario.id','pedido.usuario')->where('fecha',$request->fecha)->get();
         
         $ocupadas=[];
         foreach ($hab_ocupadas as $hab){
             $ocupadas[$hab['nro_hab']]=$hab['nro_hab'];
         }
-;       $hab_libres= Habitacion::join('Tipo_habitacion','habitacion.tipo','tipo_habitacion.id')->whereNotIn('nro_habitacion', $ocupadas)->get();
-        $hab_nolibres= Habitacion::join('Tipo_habitacion','habitacion.tipo','tipo_habitacion.id')->whereIn('nro_habitacion', $ocupadas)->get();
+;       $hab_libres= Habitacion::join('tipo_habitacion','habitacion.tipo','tipo_habitacion.id')->whereNotIn('nro_habitacion', $ocupadas)->get();
+        $hab_nolibres= Habitacion::join('tipo_habitacion','habitacion.tipo','tipo_habitacion.id')->whereIn('nro_habitacion', $ocupadas)->get();
 
-        $sal_ocupadas= Evento_fecha::join('Pedido','pedido.id','evento_fecha.nro_pedido')->join('Evento','evento.nro_salon','evento_fecha.nro_evento')
-        ->join('Usuario','usuario.id','pedido.usuario')->where('fecha',$request->fecha)->select('evento.nombre as nombre_evento', 'usuario.nombre','evento.nro_salon','usuario.id')->get();
+        $sal_ocupadas= Evento_fecha::join('pedido','pedido.id','evento_fecha.nro_pedido')->join('evento','evento.nro_salon','evento_fecha.nro_evento')
+        ->join('usuario','usuario.id','pedido.usuario')->where('fecha',$request->fecha)->select('evento.nombre as nombre_evento', 'usuario.nombre','evento.nro_salon','usuario.id')->get();
                 
         
         
@@ -194,8 +194,8 @@ class adminController extends Controller
 
         $promedio= Pedido::whereMonth('created_at', $request->mes)->whereYear('created_at', $request->año)->avg('total');
 
-        $detalle=Pedido::join('Usuario','usuario.id','pedido.usuario')->join('Pais','pais.id','usuario.pais')
-        ->join('Tipo_pago','tipo_pago.id','pedido.tipo_pago')->whereMonth('pedido.created_at', $request->mes)->whereYear('pedido.created_at', $request->año)
+        $detalle=Pedido::join('usuario','usuario.id','pedido.usuario')->join('pais','pais.id','usuario.pais')
+        ->join('tipo_pago','tipo_pago.id','pedido.tipo_pago')->whereMonth('pedido.created_at', $request->mes)->whereYear('pedido.created_at', $request->año)
         ->select('pedido.id as pedido_id','usuario.nombre as nombre_usuario','tipo_pago.nombre as tipo_pago','pais.nombre as pais','pedido.total as total')->get();
 
 

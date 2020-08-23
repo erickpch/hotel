@@ -7,6 +7,6 @@
 @section('contenido')
 
 <center>
-<img src="../final.png" alt="" width="50%">
+<img src="{{asset('/final.png')}}" alt="" width="50%"> 
 </center>
 @endsection

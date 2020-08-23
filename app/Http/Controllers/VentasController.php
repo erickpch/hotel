@@ -20,7 +20,7 @@ class VentasController extends Controller
     public function opciones(){
         $id= Auth::guard('usuario')->user()->id;
         
-        $datos= Usuario::join('Moneda','moneda.id','usuario.moneda')->join('pais','pais.id','usuario.pais')->where('usuario.id',$id)->select('usuario.id','usuario.nombre','usuario.ci','usuario.telefono','usuario.pais','usuario.moneda','moneda.nombre as nombre_moneda','moneda.id as moneda_id','pais.nombre as nombre_pais','usuario.pais as id_pais')->get();      
+        $datos= Usuario::join('moneda','moneda.id','usuario.moneda')->join('pais','pais.id','usuario.pais')->where('usuario.id',$id)->select('usuario.id','usuario.nombre','usuario.ci','usuario.telefono','usuario.pais','usuario.moneda','moneda.nombre as nombre_moneda','moneda.id as moneda_id','pais.nombre as nombre_pais','usuario.pais as id_pais')->get();      
         $datos=$datos[0];
         
         return view ('opciones',compact('datos'));
@@ -41,12 +41,12 @@ class VentasController extends Controller
 
     public function show_habitaciones(){
        
-        $array= Habitacion::join('Tipo_habitacion','tipo_habitacion.id','habitacion.tipo')->select('tipo_habitacion.nombre','habitacion.nro_habitacion','habitacion.precio','habitacion.link_imagen','habitacion.nro_habitacion')->get();
+        $array= Habitacion::join('tipo_habitacion','tipo_habitacion.id','habitacion.tipo')->select('tipo_habitacion.nombre','habitacion.nro_habitacion','habitacion.precio','habitacion.link_imagen','habitacion.nro_habitacion')->get();
        
 
 
         $id= Auth::guard('usuario')->user()->id;        
-        $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$id)->select('moneda.cambio','moneda.nombre')->get();
+        $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$id)->select('moneda.cambio','moneda.nombre')->get();
         $cambio=$cambio[0];
         
         
@@ -58,10 +58,10 @@ class VentasController extends Controller
     public function mostrar_producto($id){
         $usuario= Auth::guard('usuario')->user()->id;      
         
-        $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
+        $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
         $cambio=$cambio[0];
          
-        $producto= Habitacion::join('Tipo_habitacion','tipo_habitacion.id','habitacion.tipo')->where ('habitacion.nro_habitacion',$id)->get();
+        $producto= Habitacion::join('tipo_habitacion','tipo_habitacion.id','habitacion.tipo')->where ('habitacion.nro_habitacion',$id)->get();
         $producto= $producto[0];
 
 

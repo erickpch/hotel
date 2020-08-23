@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tipo_habitacion extends Model
 {
-    protected $table ='moneda';
+    protected $table ='tipo_habitacion';
     protected $primaryKey = 'id';
     
     protected $fillable = ['nombre'];

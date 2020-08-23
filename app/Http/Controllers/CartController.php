@@ -27,7 +27,7 @@ class CartController extends Controller
         $sal=\Session::get('cart_sal');
         $usuario= Auth::guard('usuario')->user()->id;      
         
-        $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
+        $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
         $cambio=$cambio[0];
         
         return view('carrito',compact('cart','serv','sal','cambio'));

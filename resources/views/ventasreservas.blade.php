@@ -7,8 +7,8 @@
     
     <br><br>
     <center>
-    <a href="{{asset('/menu/reservas/habitaciones')}}"><img src="/reservas/hab.jpg" width="40%" height="10%" alt=""></a>
-    <a href="{{asset('/menu/reservas/salones')}}"><img src="/reservas/salones.jpg" width="40%" height="10%" alt=""></a>
+    <a href="/menu/reservas/habitaciones"><img src="{{asset('/reservas/hab.jpg')}}" width="40%" height="10%" alt=""></a>
+    <a href="/menu/reservas/salones"><img src="{{asset('/reservas/salones.jpg')}}" width="40%" height="10%" alt=""></a>
      </center>
 
      

@@ -20,7 +20,7 @@ class SalonController extends Controller
         $array= Evento::get();        
 
         $id= Auth::guard('usuario')->user()->id;        
-        $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$id)->select('moneda.cambio','moneda.nombre')->get();
+        $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$id)->select('moneda.cambio','moneda.nombre')->get();
         $cambio=$cambio[0];
 
         return view ('ventassalones', compact('cambio','array'));
@@ -30,7 +30,7 @@ class SalonController extends Controller
     public function mostrar_salon($id){
         $usuario= Auth::guard('usuario')->user()->id;      
         
-        $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
+        $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
         $cambio=$cambio[0];
          
         $producto= Evento::find($id)->where('nro_salon',$id)->get();

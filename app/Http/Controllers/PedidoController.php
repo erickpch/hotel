@@ -28,7 +28,7 @@ class PedidoController extends Controller
         $sal=\Session::get('cart_sal');
         $usuario= Auth::guard('usuario')->user()->id;      
         
-        $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
+        $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
         $cambio=$cambio[0];
     
         $suma = 0;        
@@ -54,7 +54,7 @@ class PedidoController extends Controller
 
     $usuario= Auth::guard('usuario')->user()->id;      
         
-    $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
+    $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre')->get();
     $cambio=$cambio[0];
     return view('procesar_pedido',compact('cambio','suma','impuesto','total'));
    }
@@ -64,7 +64,7 @@ class PedidoController extends Controller
     
 
     $usuario= Auth::guard('usuario')->user()->id;   
-    $cambio= Usuario::join('Moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre','usuario.moneda')->get();
+    $cambio= Usuario::join('moneda','moneda.id','usuario.moneda')->where('usuario.id',$usuario)->select('moneda.cambio','moneda.nombre','usuario.moneda')->get();
     $cambio=$cambio[0];
   
     $pedido= ['usuario'=>$usuario, 'moneda' => $cambio->moneda, 'tipo_pago'=>$request->tipo_pago, 'total'=> $request->pedido];
