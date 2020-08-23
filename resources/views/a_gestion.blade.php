@@ -20,7 +20,7 @@
                  @foreach ($hab as $item)
                     <tr>
                         <td>Habitacion {{$item['nombre']}} N°{{$item['nro_habitacion']}}</td>
-                        <td style="width:30%"><img src="{{$item['link_imagen']}}" alt=""></td>
+                        <td style="width:30%"><img src= "{{asset($item['link_imagen'])}}" alt=""></td>
                         <td style="width:10%">
                             <form action="{{route('verificar_h')}}" method="POST">
                             {{ csrf_field() }}
@@ -52,7 +52,7 @@
                  @foreach ($serv as $item)
                     <tr>
                         <td>{{$item['nombre']}}</td>
-                        <td style="width:30%"><img src="{{$item['link_imagen']}}" alt=""></td>
+                        <td style="width:30%"><img src="{{asset($item['link_imagen'])}}" alt=""></td>
                         <td style="width:10%">
                             <form action="{{route('verificar_s')}}" method="POST">
                             {{ csrf_field() }}
@@ -82,7 +82,7 @@
                  @foreach ($evento as $item)
                     <tr>
                         <td>{{$item['nombre']}}</td>
-                        <td style="width:30%"><img src="{{$item['link_imagen']}}" alt=""></td>
+                        <td style="width:30%"><img src="{{asset($item['link_imagen'])}}" alt=""></td>
                         <td style="width:10%">
                             <form action="{{route('verificar_e')}}" method="POST">
                             {{ csrf_field() }}

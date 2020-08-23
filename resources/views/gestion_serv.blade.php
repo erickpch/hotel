@@ -15,7 +15,7 @@
     <div class="subtitulos"> modificar datos </div>
 
 
-    <img src="{{$producto['link_imagen']}}" alt="">
+    <img src="{{asset($producto['link_imagen'])}}" alt="">
     <input type="text" name="imagen" value="{{$producto['link_imagen']}}" hidden>
     <input type="text" name="id" value="{{$producto['id']}}" hidden>
 <br><br>

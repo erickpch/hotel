@@ -19,7 +19,7 @@
 <div class="container text-center">
 <center>
 <div class="subtitulos"> modificar datos </div>
-    <img src="{{$producto['link_imagen']}}" alt="">
+    <img src="{{asset($producto['link_imagen'])}}" alt="">
 
     <div class="input-group mb-2 mr-sm-2">
         <div class="input-group-prepend">

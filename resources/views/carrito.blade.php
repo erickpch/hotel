@@ -32,7 +32,7 @@
         <tbody>
             @foreach ($cart as $item)
                 <tr>
-                    <td><img src="{{$item[4]}}" alt=""></td>
+                    <td><img src="{{asset($item[4])}}" alt=""></td>
                     <td>Habitacion {{$item[1]}} N°{{$item[0]}}</td>
                     <td>{{$item[3]*$cambio['cambio']}} {{$cambio['nombre']}} /dia</td>
                     <td>{{$item[2]}} dias</td>
@@ -70,7 +70,7 @@
         <tbody>
             @foreach ($serv as $item)
                 <tr>
-                    <td><img src="{{$item[4]}}" alt=""></td>
+                    <td><img src="{{asset($item[4])}}"alt=""></td>
                     <td>{{$item[1]}} </td>
                     <td>{{$item[3]*$cambio['cambio']}} {{$cambio['nombre']}} /dia</td>
                     <td>{{$item[7]}} personas</td>
@@ -109,7 +109,7 @@
         <tbody>
             @foreach ($sal as $item)
                 <tr>
-                    <td><img src="{{$item[4]}}" alt=""></td>
+                    <td><img src="{{asset($item[4])}}" alt=""></td>
                     <td>{{$item[1]}} </td>
                     <td>{{$item[3]*$cambio['cambio']}} {{$cambio['nombre']}} /dia</td>                    
                     <td>{{$item[2]}} dias</td>

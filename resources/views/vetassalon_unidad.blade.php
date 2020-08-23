@@ -26,7 +26,7 @@
 @endif
 <div class='container'>
 <center>
-    <img src="{{$producto['link_imagen']}}" alt="">
+    <img src="{{asset($producto['link_imagen'])}}" alt="">
     <h1>{{$producto['nombre']}}</h1>
     <h4>Precio: {{$producto['precio']*$cambio['cambio']}} {{$cambio['nombre']}} /persona</h4>   
     <H4>{{$producto['descripcion']}}</H4>
